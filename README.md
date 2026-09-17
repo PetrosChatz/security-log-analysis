@@ -21,6 +21,9 @@ These detections are intentionally treated as **investigative signals rather tha
 
 ```text
 security-log-analysis/
+├── .github/
+│   └── workflows/
+│       └── tests.yml
 ├── log_analyzer.py
 ├── sample_logs/
 │   └── web_access.log
@@ -84,6 +87,10 @@ The tests cover:
 - sensitive-path and error-burst detection;
 - regular-interval automation detection.
 
+## Continuous integration
+
+A GitHub Actions workflow is included in [`.github/workflows/tests.yml`](.github/workflows/tests.yml). It runs the unit tests and a sample log analysis on pushes and pull requests to `main`. It can also be started manually from the **Actions** tab using `workflow_dispatch`.
+
 ## How it works
 
 1. Each access-log line is parsed into a structured `LogEntry`.
@@ -108,6 +115,7 @@ This distinction between **detection** and **interpretation** is an important pa
 - Security analysis
 - Unit testing
 - Git & GitHub
+- GitHub Actions / basic CI
 
 ## Possible next improvements
 
@@ -117,7 +125,6 @@ This distinction between **detection** and **interpretation** is an important pa
 - Add sliding-window request-rate detection.
 - Export findings as JSON or CSV.
 - Add severity levels and confidence scores.
-- Add GitHub Actions for automated testing.
 
 ## Author
 
