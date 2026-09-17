@@ -1,0 +1,32 @@
+SECURITY LOG ANALYSIS REPORT
+============================
+Total valid requests: 24
+Unique source IPs: 4
+Malformed/skipped lines: 0
+
+HTTP STATUS SUMMARY
+-------------------
+200: 17
+401: 1
+403: 2
+404: 4
+
+FINDINGS
+--------
+[HIGH VOLUME] 203.0.113.45: 11 requests
+[ERROR BURST] 198.51.100.23: 6 HTTP 4xx/5xx responses
+[POSSIBLE AUTOMATION] 198.51.100.23: requests at ~3.0s intervals
+[POSSIBLE AUTOMATION] 203.0.113.45: requests at ~10.0s intervals
+[SENSITIVE PATHS] Requests worth reviewing:
+  - 198.51.100.23 GET /admin -> 403
+  - 198.51.100.23 GET /wp-admin -> 404
+  - 198.51.100.23 GET /.env -> 404
+  - 198.51.100.23 GET /.git/config -> 404
+  - 198.51.100.23 GET /phpmyadmin -> 404
+  - 198.51.100.23 GET /server-status -> 403
+
+INTERPRETATION
+--------------
+These findings are indicators for investigation, not proof of compromise.
+They should be correlated with authentication logs, application context,
+asset ownership and other telemetry before taking action.
